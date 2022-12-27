@@ -1,6 +1,11 @@
 const express =require('express')
-const dbConn = require('./conn')
 const app = express()
+const dbConn = require('./conn')
+
+const postroute = require('./routes/post')
+
+
+app.use('/api/post', postroute)
 
 app.get('/', (req, res)=> {
     res.send('Helloworld with Express Server')
