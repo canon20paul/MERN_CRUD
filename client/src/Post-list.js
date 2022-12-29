@@ -15,6 +15,7 @@ function PostList(){
 
         }, [])
         const postlist =postdata.map(post=>{
+            
             return(
                 <div className='row justify-content-center'>
                 <PostItem post={post}/>
@@ -24,7 +25,7 @@ function PostList(){
 
     return (
     <div>
-    
+            <a href="/addpost" className='btn btn-primary m-5'>Add Post</a>
     {postlist}
 
     </div>

@@ -38,6 +38,47 @@ router.get('/getposts', (req, res)=>{
    }) 
 })
 
+router.post('/getpostdata',(req, res)=>{
+    PostModel.find({postid:req.body.postid},(docs,err)=>{
+        if(!err)
+        {
+            res.send(docs.data[0])
+        }
+        else{
+          res.send(err)  
+        }
+
+    })
+})
+
+router.post('/updatedpost', (req, res)=>{
+    PostModel.findOneAndUpdate({postid:req.body.postid},{
+                    title:req.body.title,
+                    imageurl:req.body.imageurl,
+                    description:req.body.description
+    },(err)=>{
+if(!err)
+{
+        res.end('Post Updated Successfully')
+}
+else{
+    res.send(err)
+}
+    })
+})
+
+router.post('/deletepost', (req, res)=>{
+    PostModel.findOneAndDelete({postid:req.body.postid},  (err)=>{
+        if(!err)
+        {
+            res.send('Post Deleted Successfully')
+        }
+        else{
+            res.send(err)
+        }
+    })
+})
+
 
 
 
